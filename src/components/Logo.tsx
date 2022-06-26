@@ -1,11 +1,14 @@
-export function Logo() {
+interface LogoProps {
+  className?: string;
+}
+
+export function Logo({ className = 'w-[237px] h-[34px]' }: LogoProps) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      width="237"
-      height="34"
       fill="none"
       viewBox="0 0 237 34"
+      className={className}
     >
       <path
         fill="#fff"

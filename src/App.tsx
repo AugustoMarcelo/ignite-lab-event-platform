@@ -1,14 +1,17 @@
 import { ApolloProvider } from '@apollo/client';
 import { BrowserRouter } from 'react-router-dom';
+import { SidebarProvider } from './contexts/sidebar';
 import { client } from './lib/apollo';
 import { Router } from './Router';
 
 function App() {
   return (
     <ApolloProvider client={client}>
-      <BrowserRouter>
-        <Router />
-      </BrowserRouter>
+      <SidebarProvider>
+        <BrowserRouter>
+          <Router />
+        </BrowserRouter>
+      </SidebarProvider>
     </ApolloProvider>
   );
 }

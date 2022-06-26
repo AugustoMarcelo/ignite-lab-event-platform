@@ -15,14 +15,16 @@ export function Footer(props: FooterProps) {
         'px-8': props.page === 'event',
       })}
     >
-      <div className="w-full flex items-center justify-between border-t-[1px] border-gray-500 pt-6">
-        <div className="flex items-center">
+      <div className="w-full flex flex-col items-center justify-between border-t-[1px] border-gray-500 pt-6 md:flex-row">
+        <div className="flex flex-col items-center md:flex-row">
           <CompanyLogo />
-          <span className="ml-6 text-sm text-gray-300">
+          <span className="ml-6 text-sm text-gray-300 mt-4 md:mt-0">
             Rocketseat - Todos os direitos reservados
           </span>
         </div>
-        <span className="text-sm text-gray-300">Políticas de privacidade</span>
+        <span className="text-sm text-gray-300 mt-6 md:mt-0">
+          Políticas de privacidade
+        </span>
       </div>
     </footer>
   );

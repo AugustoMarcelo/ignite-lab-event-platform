@@ -29,29 +29,29 @@ export function Subscribe() {
   }
 
   return (
-    <div className="min-h-screen bg-blur bg-cover bg-no-repeat flex flex-col items-center relative">
-      <div className="absolute top-1 left-1/2 transform -translate-x-1/2 -z-0">
+    <div className="h-screen bg-blur bg-cover bg-no-repeat flex flex-col items-center relative scrollbar-thin scrollbar-thumb-gray-500 scrollbar-track-transparent">
+      <div className="fixed top-1 left-1/2 transform -translate-x-1/2 -z-10">
         <ReactIcon />
       </div>
 
-      <div className="w-full max-w-[1100px] flex items-center justify-between mt-20 mx-auto z-10">
-        <div className="max-w-[640px]">
+      <div className="w-full max-w-[1100px] flex flex-col items-center justify-between mt-10 lg:flex-row md:mt-20 mx-auto z-0">
+        <div className="max-w-[640px] flex flex-col items-center mx-6 md:mx-0 lg:block">
           <Logo />
 
-          <h1 className="mt-8 text-[2.5rem] leading-tight">
+          <h1 className="mt-8 text-[1.875rem] leading-tight text-center md:text-4xl lg:text-start lg:text-[2.5rem]">
             Construa uma{' '}
             <strong className="text-blue-500">aplicação completa</strong>, do
             zero, com <strong className="text-blue-500">React JS</strong>
           </h1>
-          <p className="mt-4 text-gray-200 leading-relaxed">
+          <p className="mt-6 mb-8 text-gray-200 leading-relaxed text-sm text-center md:text-xl lg:text-base lg:text-start lg:mt-4 lg:mb-0">
             Em apenas uma semana você vai dominar na prática uma das tecnologias
             mais utilizadas e com alta demanda para acessar as melhores
             oportunidades do mercado.
           </p>
         </div>
 
-        <div className="p-8 bg-gray-700 border border-gray-500 rounded">
-          <strong className="text-2xl mb-6 block">
+        <div className="w-full px-6 py-8 bg-gray-700 border-y border-gray-500 mt-0 md:mt-4 md:rounded md:border md:w-[560px] lg:w-auto md:p-8">
+          <strong className="text-lg mb-6 block md:text-2xl">
             Inscreva-se gratuitamente
           </strong>
 
@@ -84,7 +84,11 @@ export function Subscribe() {
           </form>
         </div>
       </div>
-      <img src={codeMockUpImg} className="mt-10" alt="" />
+      <img
+        src={codeMockUpImg}
+        className="w-[95%] mt-4 lg:w-full md:max-w-[1100px] md:mt-0 lg:mt-10"
+        alt=""
+      />
 
       <Footer page="subscribe" />
     </div>
