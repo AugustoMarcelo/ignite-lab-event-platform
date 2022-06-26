@@ -8,6 +8,7 @@ import {
   useGetFirstLessonQuery,
 } from '../graphql/generated';
 
+import { Spinner } from 'phosphor-react';
 import codeMockUpImg from '../assets/code-mockup.png';
 
 export function Subscribe() {
@@ -16,21 +17,25 @@ export function Subscribe() {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
 
-  const [createSubscriber, { loading }] = useCreateSubscriberMutation({});
+  const [createSubscriber, { loading, error }] = useCreateSubscriberMutation(
+    {}
+  );
   const { data: firstLesson } = useGetFirstLessonQuery();
 
   async function handleSubscribe(event: FormEvent) {
     event.preventDefault();
 
-    await createSubscriber({
-      variables: {
-        name,
-        email,
-      },
-    });
-
-    if (firstLesson?.lessons.length) {
-      navigate(`event/lesson/${firstLesson.lessons[0].slug}`);
+    try {
+      await createSubscriber({
+        variables: {
+          name,
+          email,
+        },
+      });
+    } finally {
+      if (firstLesson?.lessons.length) {
+        navigate(`event/lesson/${firstLesson.lessons[0].slug}`);
+      }
     }
   }
 
@@ -81,10 +86,11 @@ export function Subscribe() {
             />
 
             <button
-              className="mt-4 bg-green-500 uppercase py-4 rounded font-bold text-sm hover:bg-green-700 transition-colors disabled:opacity-50"
+              className="flex items-center justify-center mt-4 bg-green-500 uppercase py-4 rounded font-bold text-sm hover:bg-green-700 transition-colors disabled:opacity-50"
               disabled={loading}
               type="submit"
             >
+              {loading && <Spinner size={24} className="mr-1 animate-spin" />}
               Garantir minha vaga
             </button>
           </form>
