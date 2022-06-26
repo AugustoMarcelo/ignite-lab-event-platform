@@ -3,7 +3,10 @@ import { useNavigate } from 'react-router-dom';
 import { Footer } from '../components/Footer';
 import { Logo } from '../components/Logo';
 import { ReactIcon } from '../components/ReactIcon';
-import { useCreateSubscriberMutation } from '../graphql/generated';
+import {
+  useCreateSubscriberMutation,
+  useGetFirstLessonQuery,
+} from '../graphql/generated';
 
 import codeMockUpImg from '../assets/code-mockup.png';
 
@@ -13,7 +16,8 @@ export function Subscribe() {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
 
-  const [createSubscriber, { loading }] = useCreateSubscriberMutation();
+  const [createSubscriber, { loading }] = useCreateSubscriberMutation({});
+  const { data: firstLesson } = useGetFirstLessonQuery();
 
   async function handleSubscribe(event: FormEvent) {
     event.preventDefault();
@@ -25,7 +29,9 @@ export function Subscribe() {
       },
     });
 
-    navigate('/event');
+    if (firstLesson?.lessons.length) {
+      navigate(`event/lesson/${firstLesson.lessons[0].slug}`);
+    }
   }
 
   return (
@@ -60,14 +66,14 @@ export function Subscribe() {
             onSubmit={handleSubscribe}
           >
             <input
-              className="bg-gray-900 rounded px-5 h-14 hover:outline-none focus:outline-none hover:outline-green-300 focus:outline-green-300 invalid:outline-red-500 focus:invalid:outline-red-500"
+              className="bg-gray-900 rounded px-5 h-14 border-none hover:outline-none focus:ring-transparent focus:outline-none hover:outline-green-300 focus:outline-green-300 invalid:outline-red-500 focus:invalid:outline-red-500"
               type="text"
               placeholder="Seu nome completo"
               required
               onChange={(event) => setName(event.target.value)}
             />
             <input
-              className="bg-gray-900 rounded px-5 h-14 hover:outline-none focus:outline-none hover:outline-green-300 focus:outline-green-300 invalid:outline-red-500 focus:invalid:outline-red-500"
+              className="bg-gray-900 rounded px-5 h-14 border-none hover:outline-none focus:ring-transparent focus:outline-none hover:outline-green-300 focus:outline-green-300 invalid:outline-red-500 focus:invalid:outline-red-500"
               type="email"
               placeholder="Digite seu e-mail"
               required
