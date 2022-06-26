@@ -29,12 +29,12 @@ export function Subscribe() {
   }
 
   return (
-    <div className="min-h-screen bg-blur bg-cover bg-no-repeat flex flex-col items-center relative">
-      <div className="fixed top-1 left-1/2 transform -translate-x-1/2 -z-0">
+    <div className="h-screen bg-blur bg-cover bg-no-repeat flex flex-col items-center relative scrollbar-thin scrollbar-thumb-gray-500 scrollbar-track-transparent">
+      <div className="fixed top-1 left-1/2 transform -translate-x-1/2 -z-10">
         <ReactIcon />
       </div>
 
-      <div className="w-full max-w-[1100px] flex flex-col items-center justify-between mt-10 lg:flex-row md:mt-20 mx-auto z-10">
+      <div className="w-full max-w-[1100px] flex flex-col items-center justify-between mt-10 lg:flex-row md:mt-20 mx-auto z-0">
         <div className="max-w-[640px] flex flex-col items-center mx-6 md:mx-0 lg:block">
           <Logo />
 
